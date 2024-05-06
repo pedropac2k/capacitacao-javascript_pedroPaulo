@@ -684,64 +684,473 @@ Por fim, não necessita o then já que o await faz o papel dele e o catch contin
 
 ## 5. Type Script
 
+Agora que você viu vários aspectos do JS, viu como essa é uma linguagem poderosa e que pode atender aos requisitos de projetos. Contudo, como você deve ter reparado em nenhum momento quando as variáveis eram declaradas, tinha um tipo definido para elas, como por exemplo um “nome” poderia ser do tipo string já que sabemos que um nome é um conjunto de letras.
+
+Também cabe ressaltar que as operações do JS podem ou não depender do tipo, como foi explicitado na seção 4.7. Desta maneira, a não declaração de tipos pode ser uma grande fonte para bugs e um dos maiores indicadores das pesquisas científicas que indicam as dores cabeças dos pobres devs.
+
+Sendo assim, o TypeScript (TS) veio ser a nossa dipirona, ele é responsável por tipar as variáveis, ou seja, garantir que um valor esperado em algum lugar do código realmente será do tipo que o desenvolvedor espera. Sendo assim, a sintaxe básica para tipar uma variável é nomeVariavel: tipo.
+
+Então nas próximas seções será apresentado como o TS é utilizado, você perceberá que é a base do JS, com a diferença de adicionar tipos. E é ele que iremos utilizar em nossos desenvolvimento no Ex Machina.
+
 ### 5.1. Tipos de dados básico
+
+Primeiramente serão apresentados como o TS funciona para os tipos primitivos que já foram familiarizados nas seções do JS.
 
 #### 5.1.1. Number
 
+Representa valores numéricos, inteiros ou de ponto flutuante.
+
+```typescript
+let decimal: number = 6;
+let hex: number = 0xf00d;
+let binary: number = 0b1010;
+let octal: number = 0o744;
+```
+
 #### 5.1.2. String
+
+Representa valores de texto.
+
+```typescript
+let color: string = "blue";
+color = "red";
+
+let fullName: string = `Bob Bobbington`;
+let age: number = 37;
+let sentence: string = `Hello, my name is ${fullName}.
+I'll be ${age + 1} years old next month.`;
+
+let sentence: string =
+  "Hello, my name is " +
+  fullName +
+  ".\n\n" +
+  "I'll be " +
+  (age + 1) +
+  " years old next month.";
+```
 
 #### 5.1.3. Array
 
+Representa uma lista de valores de um determinado tipo.
+
+```typescript
+let numeros: number[] = [1, 2, 3, 4, 5];
+```
+
 #### 5.1.4. Tuple
+
+Representa uma lista ordenada de elementos com tipos específicos.
+
+```typescript
+let pessoa: [string, number] = ["Xuxa", 60];
+```
 
 #### 5.1.5. Enum
 
+É uma forma de criar um conjunto de valores nomeados. Representa valores enumerados.
+
+```typescript
+enum rifa {
+  "bicicleta",
+  "doce de leite",
+  "doce de abobora",
+}
+
+enum DiaDaSemana {
+  Segunda,
+  Terca,
+  Quarta,
+  Quinta,
+  Sexta,
+  Sabado,
+  Domingo,
+}
+
+let hoje: DiaDaSemana = DiaDaSemana.Segunda;
+```
+
 #### 5.1.6. Boolean
+
+Representa valores verdadeiros ou falsos.
+
+```typescript
+let ativo: boolean = true;
+```
 
 #### 5.1.7. Null e Undefined
 
+Null indica o valor nulo e undefined indica o valor indefinido.
+
+```typescript
+let u: undefined = undefined;
+let n: null = null;
+```
+
 #### 5.1.8. Any
+
+Permite que uma variável tenha qualquer tipo. Seria o “tipo padrão”/do JS, portanto não faz tanto sentido ser usado.
+
+```typescript
+let variavelQualquer: any = "Isso pode ser qualquer coisa";
+```
 
 #### 5.1.9. Void
 
+Usado para indicar que uma função não retorna nenhum valor.
+
+```typescript
+function mostrarMensagem(): void {
+  console.log("Olá, mundo!");
+}
+```
+
 #### 5.1.10. Object
+
+Tipo `object` em TypeScript é uma representação genérica de qualquer valor não primitivo. Embora seja flexível, você deve ter cuidado ao usá-lo, pois perde informações detalhadas sobre a estrutura do objeto, o que pode levar a erros de tempo de execução. É geralmente preferível usar tipos mais específicos sempre que possível para garantir maior segurança de tipos em seu código. Exemplo:
+
+```typescript
+let objeto: object;
+
+objeto = { nome: "Alice" }; // Válido
+objeto = [1, 2, 3]; // Válido
+objeto = "Olá"; // Válido
+objeto = 42; // Válido
+```
+
+No entanto, você não pode fazer o seguinte sem uma verificação de tipo: objeto.nome;. Isso resultará em um erro: “Erro, propriedade 'nome' não existe em tipo 'object'”. Ou seja, a flexibilidade oferecida possibilita bugs.
+
+Para evitar esses bugs e acessar propriedades ou métodos em um objeto com tipo object, você pode usar a verificação de tipo ou realizar uma conversão de tipo, como exemplificado a seguir:
+
+```typescript
+let objeto: object = { nome: "Alice" };
+
+// Verificação de tipo
+if ("nome" in objeto) {
+  console.log(objeto["nome"]); // "Alice"
+}
+
+// Conversão de tipo
+let objetoConvertido = objeto as { nome: string };
+console.log(objetoConvertido.nome); // "Alice"
+```
 
 ### 5.2. Inferência de Tipos
 
+Uma das vantagens do TypeScript é sua capacidade de inferir tipos automaticamente, o que significa que você não precisa especificar o tipo de variável o tempo todo. Por exemplo:
+
+```typescript
+let numero = 42; // Infere o tipo "number" automaticamente
+let mensagem = "Olá, TypeScript!"; //Infere "string" sozinho
+```
+
+O TypeScript usa a inferência de tipos para determinar o tipo das variáveis com base no valor atribuído a elas. Isso torna o código mais limpo e legível, mas você ainda pode especificar tipos manualmente quando necessário.
+
+Além dos tipos básicos, o TypeScript suporta tipos mais avançados, como uniões, interseções, tipos genéricos e tipos personalizados. Isso permite criar sistemas de tipos complexos para atender às necessidades específicas do seu projeto, garantindo maior segurança e confiabilidade em seu código TypeScript.
+
 ### 5.3. Union Types
+
+Em Typescript é possível ter mais de um tipo de retorno, como por exemplo:
+
+```typescript
+function isNumber(value: string | number) {
+   if (typeof value === “number”) return true;
+   else return false;
+}
+```
+
+O uso de Union Types é comum ao se trabalhar com eventos no DOM (HTML), pois o código Typescript não tem acesso prévio ao DOM, não sendo assim capaz de identificar se esse elemento existe ou não, por isso null é comum como um tipo de retorno.
+
+Um exemplo disso é que ao declarar um querySelector os tipos que aparecem no próprio editor de texto são ou um HTMLButtonElement ou null. Uma outra maneira de realizar isso é através de um [Optional chaining (?.)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining). Usando essa ferramenta, ao invés de um retorno nulo que joga um erro é retornado undefined, nos casos que seriam null.
 
 ### 5.4. Funções em TypeScript
 
+Nesta seção será apresentado os detalhes de como implementar funções em TypeScript e você poderá observar as diferenças e semelhanças com relação ao JavaScript.
+
 #### 5.4.1. Declaração de Funções
+
+Em TypeScript, você pode declarar funções de várias maneiras. A maneira mais comum é usar a sintaxe de função, onde você fornece um nome de função seguido pelos parâmetros e pelo corpo da função:
+
+```typescript
+function digaOla(nome: string): void {
+  console.log(`Olá, ${nome}!`);
+}
+```
+
+Você também pode usar as arrow functions:
+
+```typescript
+const digaOla = (nome: string): void => {
+  console.log(`Olá, ${nome}!`);
+};
+```
 
 #### 5.4.2. Parâmetros e Tipos
 
+Em TypeScript, você pode especificar os tipos de parâmetros em uma função para melhorar a segurança de tipos. Isso ajuda a evitar que erros de tipo ocorram durante a execução.
+
+```typescript
+function adicionar(a: number, b: number): number {
+  return a + b;
+}
+```
+
+Neste exemplo, a função `adicionar` aceita dois parâmetros, ambos do tipo `number`. O TypeScript irá verificar se os argumentos passados para a função são do tipo correto.
+
 #### 5.4.3. Valor de Retorno
+
+Você pode especificar o tipo de valor de retorno de uma função usando `: TipoDeRetorno`. Isso ajuda a indicar qual tipo de valor a função deve retornar.
+
+```typescript
+function soma(a: number, b: number): number {
+  return a + b;
+}
+```
+
+Neste caso, a função `soma` deve retornar um valor do tipo `number`.
 
 ### 5.5. Interfaces
 
 ### 5.5.1. Criando e usando interfaces
 
+As interfaces são criadas usando a palavra-chave interface e especificam a forma que um objeto deve ter. Você pode usá-las para definir tipos personalizados que são aplicados a variáveis, parâmetros de função ou valores de retorno.
+
+```typescript
+interface EstudanteUNIFEI {
+  nome: string;
+  matricula: number;
+  curso: string;
+  anoIngresso: number;
+}
+
+const estudante: EstudanteUNIFEI = {
+  nome: "João",
+  matricula: 123456,
+  curso: "Engenharia da Computação",
+  anoIngresso: 2020,
+};
+```
+
 #### 5.5.2. Extensão de tipos com interfaces
+
+Assim como as classes podem herdar de outras classes, as interfaces podem herdar de outras interfaces. Isso permite que você compartilhe estruturas comuns entre diferentes tipos de objetos.
+
+```typescript
+interface Pessoa {
+  nome: string;
+  idade: number;
+}
+
+interface Funcionario {
+  cargo: string;
+  salario: number;
+}
+
+interface Gerente extends Pessoa, Funcionario {
+  departamento: string;
+}
+
+const gerente: Gerente = {
+  nome: "João",
+  idade: 35,
+  cargo: "Gerente de Projetos",
+  salario: 75000,
+  departamento: "Desenvolvimento",
+};
+```
+
+Você pode estender tipos existentes usando interfaces. Isso é útil quando você precisa adicionar novas propriedades a um tipo existente sem modificar o código original.
+
+```typescript
+interface EstudanteUNIFEI {
+  nome: string;
+  matricula: number;
+  curso: string;
+  anoIngresso: number;
+}
+
+interface ExMachina extends EstudanteUNIFEI {
+  anoIngressoProjeto: number;
+  anoSaidaProjeto: number;
+}
+
+const AlunoDoExMachina: ExMachina = {
+  nome: "Ronaldo",
+  matricula: 987654,
+  curso: "Engenharia Elétrica",
+  anoIngresso: 2019,
+  anoIngressoProjeto: 2022,
+  anoSaidaProjeto: 2023,
+};
+```
 
 ### 5.6. Type Aliases
 
+Assim como as interfaces, o Type Aliases é utilizado para definição de tipos. A documentação do TypeScript deixa explícito que escolher entre type aliases e interfaces é algo muito relacionado ao gosto pessoal.
+Contudo aqui no Ex Machina estamos mais acostumados a trabalhar com o Type Aliases, visto que ele é mais utilizado para tipagem do front-end, enquanto as interfaces são recomendadas para o back-end para trabalhar com objetos node.
+Sendo assim, nas próximas subseções serão replicados os exemplos anteriores para ter-se uma comparação clara entre type aliases e interfaces.
+
 #### 5.6.1. Criando e usando type aliases
+
+Para criar um tipo a sintaxe é parecida com o interface, primeiramente tem-se a palavra reservada type seguida do nome do tipo e da atribuição, como no exemplo a seguir:
+
+```typescript
+type EstudanteUNIFEI = {
+  nome: string;
+  matricula: number;
+  curso: string;
+  anoIngresso: number;
+};
+
+const estudante: EstudanteUNIFEI = {
+  nome: "João",
+  matricula: 123456,
+  curso: "Engenharia da Computação",
+  anoIngresso: 2020,
+};
+```
 
 #### 5.6.2. Extensão de tipos com type aliases
 
+Os types permitem estender de um tipo só ou de vários por meio da notação &, como no exemplo abaixo:
+
+```typescript
+type Pessoa = {
+  nome: string;
+  idade: number;
+};
+
+type Funcionario = {
+  cargo: string;
+  salario: number;
+};
+
+type Gerente = Pessoa &
+  Funcionario & {
+    departamento: string;
+  };
+const gerente: Gerente = {
+  nome: "João",
+  idade: 35,
+  cargo: "Gerente de Projetos",
+  salario: 75000,
+  departamento: "Desenvolvimento",
+};
+```
+
+E como pode-se perceber, foi possível adicionar novos atributos ao tipo que foi criado por meio da extensão.
+
 ### 5.7. Genéricos
+
+Os genéricos no TypeScript permitem que você escreva código que pode funcionar com uma variedade de tipos, mantendo a segurança de tipos. Eles são especialmente úteis para criar funções e classes flexíveis que podem ser usadas com diferentes tipos de dados.
 
 ### 5.7.1. Introdução aos genéricos
 
+Genéricos são introduzidos usando parâmetros de tipo, que são especificados entre `<` e `>`. Eles podem ser usados em funções, classes e interfaces para tornar o código mais reutilizável e genérico.
+
+```typescript
+function qualquerValor<T>(valor: T): T {
+  return valor;
+}
+
+// Uso da função identidade com diferentes tipos de dados
+const numero: number = qualquerValor(42); // retorna 42
+const texto: string = qualquerValor("Olá, TypeScript!");
+// retorna "Olá, TypeScript!"
+
+const array: number[] = qualquerValor([1, 2, 3]);
+// retorna [1, 2, 3]
+```
+
 #### 5.7.2. Usando genéricos em funções e classes
+
+Você pode criar funções genéricas que funcionam com uma ampla gama de tipos de entrada. Além disso, você pode criar classes genéricas que aceitam tipos personalizados como argumentos.
 
 ### 5.8. Tratamento de erros
 
+Serão apresentados conceitos importantes para lidar com exceções e erros em TypeScript, permitindo que você crie um código mais robusto e seguro.
+
 #### 5.8.1. Lidando com exceções em TypeScript
+
+O TypeScript oferece suporte ao tratamento de exceções usando as construções `try`, `catch` e `throw`, assim como em outras linguagens de programação. Aqui está um exemplo:
+
+```typescript
+try {
+  //Código que pode gerar um erro
+  const resultado = 10 / 0; //Tentando dividir por zero
+  console.log(resultado); //Esta linha nunca será executada
+} catch (erro) {
+  // Capturando e lidando com o erro
+  console.error("Ocorreu um erro:", erro);
+} finally {
+  // Bloco opcional que sempre é executado
+  console.log("Execução concluída.");
+}
+```
+
+Neste exemplo, tentou-se fazer uma divisão por zero, o que resulta em um erro de tempo de execução. O bloco `try` tenta executar o código, e se ocorrer um erro, o bloco `catch` é executado para lidar com a exceção.
 
 #### 5.8.2. Tipos de Erro
 
+No TypeScript, você pode criar tipos de erros personalizados estendendo a classe `Error` ou criando suas próprias classes de erro. Isso é útil para identificar erros específicos do domínio e tratá-los adequadamente. Aqui está um exemplo:
+
+```typescript
+class ErroDaProtese extends Error {
+  constructor() {
+    super("Erro da Protese Mãozinha");
+    this.name = "ErroDaProtese";
+  }
+}
+
+try {
+  throw new ErroDaProtese();
+} catch (erro) {
+  if (erro instanceof ErroDaProtese) {
+    console.error("Erro capturado:", erro.message);
+  } else {
+    console.error("Outro erro ocorreu:", erro);
+  }
+}
+```
+
+Neste exemplo, criou-se uma classe de erro personalizado chamada `ErroDaProtese` que estende a classe `Error`. Em seguida, lançou uma instância desse erro e a capturou no bloco `catch`. Foi usada a `instanceof` para verificar se o erro capturado é uma instância do erro personalizado e, em seguida, tratou o erro de acordo.
+
 ## 6. Vídeos de conteúdo complementar
 
+- [JavaScript (A linguagem mais AMADA e/ou ODIADA 😁) //Dicionário do Programador](https://www.youtube.com/watch?v=Ri76yOpLrNg&ab_channel=C%C3%B3digoFonteTV)
+- [Curso de JavaScript e TypeScript do básico ao avançado JS/TS](https://www.udemy.com/course/curso-de-javascript-moderno-do-basico-ao-avancado/?start=0&couponCode=KEEPLEARNING)
+  - Utilize o notion do projeto para obter o login de acesso
+- [Desvendando DEFINITIVAMENTE as Promises em JavaScript // Mão no Código #21](https://www.youtube.com/watch?v=nRJhc6vXyK4&t=436s&ab_channel=C%C3%B3digoFonteTV)
+- [Async / Await SIMPLES e DESCOMPLICADO no JavaScript // Mão no Código #22](https://www.youtube.com/watch?v=h0sNAXE1ozo&ab_channel=C%C3%B3digoFonteTV)
+- [Curso Web Moderno Completo com JavaScript + Projetos](https://www.udemy.com/course/curso-web/?couponCode=LETSLEARNNOWPP)
+  - Utilize o notion do projeto para obter o login de acesso
+- [JavaScript Funcional e Reativo - PENSE como um Dev JS](https://www.udemy.com/course/javascript-funcional/?couponCode=LETSLEARNNOWPP)
+  - Utilize o notion do projeto para obter o login de acesso
+- [TypeScript // Dicionário do Programador](https://www.youtube.com/watch?v=gmupEp468lY&ab_channel=C%C3%B3digoFonteTV)
+- [VOU APRENDER TYPESCRIPT (3 motivos)](https://www.youtube.com/watch?v=M57zuClvRbM&ab_channel=FilipeDeschamps)
+- [TypeScript - O que é e quais os seus benefícios? | Diego Fernandes](https://www.youtube.com/watch?v=kg2-SMolAV0&ab_channel=Rocketseat)
+
 ## 7. Referências Bibliográficas
+
+CÓDIGO FONTE TV. Programação Orientada a Objetos: Classes e Objetos em TypeScript. [S.l.], [s.d.]. 1 vídeo (38min20s). Publicado pelo canal CódigoFonteTV em 11 de setembro de 2020. Disponível em: https://www.youtube.com/watch?v=gmupEp468lY&ab_channel=C%C3%B3digoFonteTV. Acesso em: 04 maio 2024.
+
+CONSOLE.LOG. Clonando Objetos JavaScript: Shallow vs Deep Copy. Console.log, [S.l.], [s.d.]. Disponível em: https://consolelog.com.br/clonando-objetos-javascript-shallow-vs-deep-copy/. Acesso em: 04 maio 2024.
+
+ESTEVAM, Vinicius. Principais diferenças entre Types e Interfaces em TypeScript. Medium, [S.l.], [s.d.]. Disponível em: https://viniciusestevam.medium.com/principais-diferen%C3%A7as-entre-types-e-interfaces-em-typescript-a00c945e5357. Acesso em: 04 maio 2024.
+
+Mozilla Developer Network. JavaScript. Disponível em: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript. Acesso em: 04 maio 2024.
+
+OPENAI. ChatGPT. [S.l.], [s.d.]. Inteligência Artificial. Disponível em: https://openai.com/chatgpt. Acesso em: 04 maio 2024.
+
+RABELO, Eduardo. TypeScript: Entendendo a Notação de Tipos. Medium, 2024. Disponível em: https://oieduardorabelo.medium.com/typescript-entendendo-a-nota%C3%A7%C3%A3o-de-tipos-9e8c1c89ef62. Acesso em: 04 maio 2024.
+
+SILVESTRE, Gabriel. Heranças e Interfaces. Dev.to, [S.l.], [s.d.]. Disponível em: https://dev.to/gabrielhsilvestre/herancas-e-interfaces-k0. Acesso em: 04 maio 2024.
+
+TECNOBLOG. O que é TypeScript? Guia para Iniciantes. Tecnoblog, [S.l.], [s.d.]. Disponível em: https://tecnoblog.net/responde/o-que-e-typescript-guia-para-iniciantes/. Acesso em: 04 maio 2024.
+
+TYPESCRIPT. Basic Types. TypeScript Documentation, [S.l.], [s.d.]. Disponível em: https://www.typescriptlang.org/docs/handbook/basic-types.html. Acesso em: 04 maio 2024.
+
+TYPESCRIPT. Functions. TypeScript Documentation, [S.l.], [s.d.]. Disponível em: https://www.typescriptlang.org/docs/handbook/functions.html. Acesso em: 04 maio 2024.
+
+Udemy. Curso de JavaScript Moderno do Básico ao Avançado. Disponível em: https://www.udemy.com/course/curso-de-javascript-moderno-do-basico-ao-avancado/learn/lecture/16331758?start=0#overview. Acesso em: 04 maio 2024.
+
+Udemy. Curso Web: HTML, CSS, JavaScript, jQuery, Bootstrap, PHP, MySQL. Disponível em: https://www.udemy.com/course/curso-web/. Acesso em: 04 maio 2024.
