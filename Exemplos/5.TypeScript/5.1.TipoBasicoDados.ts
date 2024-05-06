@@ -62,7 +62,7 @@ function mostrarMensagem(): void {
 }
 
 //Objeto
-let objeto: object;
+let objeto: Object;
 
 objeto = { nome: "Alice" }; // Válido
 objeto = [1, 2, 3]; // Válido

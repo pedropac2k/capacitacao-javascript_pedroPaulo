@@ -809,7 +809,7 @@ function mostrarMensagem(): void {
 Tipo `object` em TypeScript é uma representação genérica de qualquer valor não primitivo. Embora seja flexível, você deve ter cuidado ao usá-lo, pois perde informações detalhadas sobre a estrutura do objeto, o que pode levar a erros de tempo de execução. É geralmente preferível usar tipos mais específicos sempre que possível para garantir maior segurança de tipos em seu código. Exemplo:
 
 ```typescript
-let objeto: object;
+let objeto: Object;
 
 objeto = { nome: "Alice" }; // Válido
 objeto = [1, 2, 3]; // Válido
