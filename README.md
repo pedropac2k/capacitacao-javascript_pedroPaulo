@@ -271,6 +271,12 @@
 
 ## 2. Overview Java Script
 
+JavaScript (JS) é uma linguagem leve, interpretada e baseada em objetos com funções de primeira classe (funções que podem ser argumentos de outras funções). Utilizada frequentemente de script para páginas Web. É uma linguagem baseada em protótipos (permite a reutilização de objetos existentes), multi-paradigma e dinâmica, suportando estilos de orientação a objetos, imperativos e declarativos.
+JS roda no client side da web, o que pode ser usado para projetar / programar o comportamento de uma página web a partir da ocorrência de um evento. JavaScript é uma linguagem fácil de se aprender mas que também é poderosa, sendo amplamente utilizada para controlar o comportamento de páginas web.
+O ECMAScript é o padrão internacional no qual o JavaScript se baseia, e é mantido pela ECMA International. Enquanto isso, a escolha do nome "JavaScript" pela Netscape em 1995 foi parcialmente uma estratégia de marketing, aproveitando-se da popularidade crescente da linguagem Java na época. Embora os nomes sejam semelhantes, JavaScript não é Java!! Sintaxe básica é intencionalmente similar tanto a Java quanto a C++ (if, for, while, switch, try..catch).
+Objetos são criados programaticamente em JavaScript, onde métodos e propriedades são anexados a objetos vazios em tempo de execução, ao invés das definições sintáticas de classe normalmente encontradas em linguagens compiladas como C++ e Java. Assim que um objeto é construído, ele pode ser usado como um esquema (ou protótipo) para se criar objetos similares.
+As capacidades dinâmicas de JavaScript incluem a construção de objetos em tempo de execução, listas variáveis de parâmetros, variáveis de funções, criação dinâmica de scripts (através da função eval), introspecção de objetos (através da estrutura for ... in), e recuperação de código fonte (programas escritos em JavaScript podem descompilar funções de volta a seus textos originais).
+
 ## 3. Primeiro Hello World
 
 ## 4. Lógica de Programação em JS
