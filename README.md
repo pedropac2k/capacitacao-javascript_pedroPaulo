@@ -252,6 +252,23 @@
 
 ## 1. Extensões para VsCode
 
+- Prettier
+- ESLint
+- Error Lens
+- Auto Import
+- Color Highlight
+- vscode-styled-components
+- Color Picker
+- Material Icon Theme
+- JavaScript (ES6) code snippets
+- Rocketseat React Native
+- Code Spell Checker
+- Brazilian Portuguese - Code Spell Checker
+- Tailwind CSS IntelliSense
+- Console Ninja
+- Git Lens - Git supercharged
+- Code Runner
+
 ## 2. Overview Java Script
 
 ## 3. Primeiro Hello World
