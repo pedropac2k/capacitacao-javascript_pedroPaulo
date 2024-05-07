@@ -40,8 +40,36 @@
             <li>
                 <a href="#42-variáveis-letvar-e-const">Variáveis (let,var e const)</a>
             </li>
+            <ol>
+                <li>
+                <a href="#421-let">Let</a>
+                </li>
+                <li>
+                <a href="#422-var">Var</a>
+                </li>  
+                <li>
+                <a href="#423-const">Const</a>
+                </li>       
+            </ol>
             <li>
                 <a href="#43-tipos-de-dados-primitivos-string-boolean-number">Tipos de dados primitivos (string, boolean, number)</a>
+            </li>
+            <li>
+                <li>
+                <a href="#431-string">Let</a>
+                </li>
+                <li>
+                <a href="#432-number">Var</a>
+                </li>  
+                <li>
+                <a href="#433-boolean">Const</a>
+                </li>
+                <li>
+                <a href="#434-null">Var</a>
+                </li>  
+                <li>
+                <a href="#435-undefined">Const</a>
+                </li>
             </li>
             <li>
                 <a href="#44-estrutura-de-dados-array-e-objetos">Estrutura de dados (array e objetos)</a>
@@ -272,12 +300,28 @@
 ## 2. Overview Java Script
 
 JavaScript (JS) é uma linguagem leve, interpretada e baseada em objetos com funções de primeira classe (funções que podem ser argumentos de outras funções). Utilizada frequentemente de script para páginas Web. É uma linguagem baseada em protótipos (permite a reutilização de objetos existentes), multi-paradigma e dinâmica, suportando estilos de orientação a objetos, imperativos e declarativos.
+
 JS roda no client side da web, o que pode ser usado para projetar / programar o comportamento de uma página web a partir da ocorrência de um evento. JavaScript é uma linguagem fácil de se aprender mas que também é poderosa, sendo amplamente utilizada para controlar o comportamento de páginas web.
+
 O ECMAScript é o padrão internacional no qual o JavaScript se baseia, e é mantido pela ECMA International. Enquanto isso, a escolha do nome "JavaScript" pela Netscape em 1995 foi parcialmente uma estratégia de marketing, aproveitando-se da popularidade crescente da linguagem Java na época. Embora os nomes sejam semelhantes, JavaScript não é Java!! Sintaxe básica é intencionalmente similar tanto a Java quanto a C++ (if, for, while, switch, try..catch).
+
 Objetos são criados programaticamente em JavaScript, onde métodos e propriedades são anexados a objetos vazios em tempo de execução, ao invés das definições sintáticas de classe normalmente encontradas em linguagens compiladas como C++ e Java. Assim que um objeto é construído, ele pode ser usado como um esquema (ou protótipo) para se criar objetos similares.
+
 As capacidades dinâmicas de JavaScript incluem a construção de objetos em tempo de execução, listas variáveis de parâmetros, variáveis de funções, criação dinâmica de scripts (através da função eval), introspecção de objetos (através da estrutura for ... in), e recuperação de código fonte (programas escritos em JavaScript podem descompilar funções de volta a seus textos originais).
 
 ## 3. Primeiro Hello World
+
+```javascript
+console.log("Hello World!");
+```
+
+Essa expressão significa o primeiro contato do desenvolvedor com uma linguagem de programação. Acredita-se que o programador que não utiliza o termo possui longos anos de bugs pela frente.
+
+O console.log() é capaz de imprimir uma frase (string), um número (number) ou qualquer outro tipo de variável no console, não exibe nada na tela. O que a torna excelente para debugar o código.
+
+Para que o código em JS funcione é necessário a instalação do node.js, um sistema de tempo de execução que permite o desenvolvedor a criar servidores, aplicações web, algoritmos que leem inputs e interagem com o sistema operacional, e scripts.
+
+Link de instalação: https://nodejs.org/en/download
 
 ## 4. Lógica de Programação em JS
 
@@ -375,7 +419,100 @@ OBS: existe um atalho para comentar uma linha ou várias linhas, geralmente bast
 
 ### 4.2. Variáveis (let,var e const)
 
+Variáveis são contêineres que armazenam algum valor. Deve-se declará-la ao colocar o prefixo e um nome. O nome da variável não pode utilizar palavras reservadas da linguagem (Exemplo: if, let, switch), não pode começar com números (Exemplo: 123ExMachiner) e também conter espaços ou traços. É de suma importância que o nome da variável seja significativo.
+
+#### 4.2.1. Let
+
+Declara um tipo de variável que pode ter seu valor atribuído, com escopo de bloco. É preferível seu uso ao ‘var’.
+
+```javascript
+let nome = "Ex-Machina"; //String
+
+let idade = 10; // Number
+
+let ehValido = true; // Boolean
+
+let lista = [1, 2, 4, 6, 7, 10, 11, 24]; // Array
+
+let Ponto = {
+  coordenadaX: 10,
+  coordenadaY: 5,
+}; // Objeto (vai ser explicadinho mais para frente)
+```
+
+#### 4.2.2. Var
+
+Declara um tipo de variável de escopo de função ou, caso esteja fora de uma, de escopo global.
+
+```javascript
+var x = 1;
+
+{
+  var x = 2;
+  console.log(x);
+  // Expected output: 2
+}
+
+console.log(x);
+// Expected output: 2
+```
+
+#### 4.2.3. Const
+
+Utilizado para declarar constantes imutáveis de escopo de bloco. Único método de modificar a constante é se ela for um objeto, cujas propriedades podem ser adicionadas, atualizadas e removidas, como será visto mais adiante.
+
+```javascript
+const PI = 3.14;
+
+const Pessoa = {
+  nome: "Jhon",
+};
+```
+
 ### 4.3. Tipos de dados primitivos (string, boolean, number)
+
+No JavaScript existem diversos tipos de dados nas quais as variáveis podem assumir, como string e number.
+
+#### 4.3.1. String
+
+Representa o formato de texto e deve ser sempre declarado entre aspas simples ou duplas.
+
+```javascript
+let sobrenome = "Doe"; //String
+```
+
+#### 4.3.2. Number
+
+Representa o formato de números, no JS, diferentemente da linguagem C, não ocorre a diferenciação entre números inteiros e com ponto flutuante.
+
+```javascript
+let altura = 1.8; // Number
+let altura1 = 180; // Number
+```
+
+#### 4.3.3. Boolean
+
+Representa um estado lógico, verdadeiro ou falso (true or false)
+
+```javascript
+let ehCasado = false; // Boolean
+```
+
+#### 4.3.4. Null
+
+Representa o nulo, não aponta para nenhum lugar na memória.
+
+```javascript
+let partner = null; // NULL
+```
+
+#### 4.3.5 Undefined
+
+Assim como o nulo, não aponta para nenhum lugar na memória. Entretanto, diferentemente do ‘null’, não é intencional.
+
+```javascript
+let profissao; // undefined (indefinido)
+```
 
 ### 4.4. Estrutura de dados (array e objetos)
 
@@ -414,17 +551,176 @@ Por fim, um ponto importante a se destacar sobre objetos é que eles não são a
 
 ### 4.5. Operadores
 
+Os operadores são símbolos que realizam operações em valores ou variáveis. Alguns exemplos comuns incluem: aritméticos, de atribuição, de desestruturação (destructing), relacionais, lógicos, unário e ternário.
+
 #### 4.5.1. Atribuição
+
+O operador de atribuição (=) é usado para atribuir um valor a uma variável. Por exemplo:
+
+```javascript
+const nome = “John Doe”;
+```
 
 #### 4.5.2. Destructing
 
+O destructuring permite extrair valores de objetos ou arrays de forma concisa. Exemplo:
+
+```javascript
+//Para arrays:
+let a, b, rest;
+[a, b] = [10, 20];
+
+console.log(a);
+//Output: 10
+
+console.log(b);
+//Output: 20
+
+[a, b, ...rest] = [10, 20, 30, 40, 50];
+
+console.log(rest);
+//Output: [30, 40, 50]
+
+//Para objetos:
+const pessoa = { nome: "Jhonny", idade: 16 };
+console.log(pessoa.nome);
+//Output: Jhonny
+```
+
 #### 4.5.3. Aritméticos
+
+Representam os operadores matemáticos, note que também é possível somar strings.
+
+```javascript
+let a = 5,
+  b = 10,
+  c;
+c = a + b; // Soma // Output: 15
+c = a - b; // Subtração // Output: 5
+c = a * b; // Multiplicação // Output: 50
+c = a / b; // Divisão // Output: 2
+c = a % b; // Resto da Divisão // Output: 0
+let nome = "Nome",
+  nome2 = "Sobrenome";
+console.log(nome + " " + nome2); //Output: Nome Sobrenome
+```
 
 #### 4.5.4. Relacionais
 
+Os operadores relacionais comparam valores e retornam um resultado booleano (true ou false). Esses operadores são:
+
+- > (maior)
+- < (menor)
+- > = (maior igual)
+- <= (menor igual)
+- == (igual)
+- != (diferente)
+- === (estritamente igual)
+
+```javascript
+let e = 10,
+  f = 15;
+
+if (e > f) {
+  //do stuff
+}
+
+if (e < f) {
+  //do stuff
+}
+
+if (e == f) {
+  //do stuff
+}
+
+if (e >= f) {
+  //do stuff
+}
+
+if (e <= f) {
+  //do stuff
+}
+```
+
+O JavaScript faz conversões automáticas de tipos em algumas situações. Isso pode levar a resultados inesperados, como no exemplo abaixo. É importante entender a diferença entre == (comparação solta) e === (comparação estrita). A comparação solta (==) converte os operandos para o mesmo tipo antes de compará-los, enquanto a comparação estrita (===) não faz conversões de tipo.
+
+```javascript
+console.log("10" == 10); //true (conversão de tipos)
+console.log("10" === 10); //false (comparação estrita)
+```
+
 #### 4.5.5. Lógicos
 
+Os operadores lógicos representam a álgebra booleana. Operações como OU, E e NÃO. possuem símbolos próprios, sendo: ‘||’ , ‘&&’ e ‘!’, respectivamente.
+
+```javascript
+let idade = 25,
+  num = 10;
+
+if (idade >= 18 && idade <= 65) {
+  // && = E, precisa atender ambas condições
+  console.log("Você é um adulto!");
+}
+
+if (num == 0 || num >= 10) {
+  // || = OU, apenas umas das condições é necessária para validar
+  console.log("Alguma coisa");
+}
+
+if (!idade) {
+  // ! = NÃO (NOT), nesse caso, verifica se idade é diferente de 0, NULL ou undefined
+  console.log("Idade Inválida");
+}
+```
+
 #### 4.5.6. Unário e Ternário
+
+##### 4.5.6.1. Unário
+
+Trata-se de uma operação com apenas um (1) operando, são apresentados como: operadores de incremento (++) e decremento (--), que podem ser posicionados antes ou depois da variável, produzindo efeitos diferentes. Também têm-se os de atribuição (+=, -=, \*=, /=, %=).
+
+Exemplo incremento e decremento:
+
+```javascript
+let x = 10,
+  y = 15,
+  z;
+
+z = --x + y; //Output: 24
+
+z = x-- + y; //Output: 24
+console.log(x); //Output: 8
+
+z = ++x + y; //Output: 24
+
+z = x++ + y; //Output: 24
+console.log(x); //Output: 10
+```
+
+Exemplo atribuição:
+
+```javascript
+let l = 10,
+  m = 5;
+
+l += m; // Equivalente: l = l + m // Output: 15
+l -= m; // Equivalente: l = l - m // Output: 5
+l *= m; // Equivalente: l = l * m // Output: 50
+l /= m; // Equivalente: l = l / m// Output: 2
+l %= m; // Equivalente: l = l % m // Output: 0
+```
+
+##### 4.5.6.1. Ternário
+
+É comumente utilizado como um atalho para o ‘if’, avaliando uma expressão como verdadeira ou falsa.
+
+Sintaxe: condição? resultado1 : resultado2
+
+Exemplo:
+
+```javascript
+console.log(idade > 18 ? "Você é um adulto!" : "Você é jovem!");
+```
 
 ### 4.6. Estruturas de controle
 
@@ -573,9 +869,48 @@ for (let atributo in pessoa) {
 
 ### 4.7. Clonando Objetos, Shallow Copy x Deep Copy
 
+A clonagem nos permite criar versões independentes e isoladas, preservando a integridade dos dados e evitando efeitos colaterais indesejados. Essa prática é especialmente útil em situações em que desejamos modificar apenas uma cópia do objeto, enquanto mantemos o objeto original intacto.
+
 #### 4.7.1. Shallow Copy
 
+Quando utilizamos o ... (spread operator) ou o Object.assign(), estamos efetuando uma shallow copy de um objeto. Isso significa que estamos criando um novo objeto com uma nova referência.
+
+```javascript
+let livro = {
+  titulo: "Os Miseráveis",
+  genero: ["Romance", "Drama", "Épico", "Tragédia", "Ficção"],
+  autor: "Victor Hugo",
+};
+console.log(livro);
+
+const clone = { ...livro };
+console.log(clone);
+
+const clone2 = Object.assign();
+console.log(clone2);
+```
+
+Propriedades do tipo primitivo (primitive type), como por exemplo string e number, são copiadas gerando um novo valor, ocupando um novo espaço de memória, ou seja, são cópias independentes.
+
+As propriedades do tipo referência (reference type), como arrays e objetos, tem suas referências copiadas, ou seja, não é feita uma cópia do objeto em si, mas sim do endereço de memória onde o objeto está armazenado. Portanto, as propriedades reference type do clone apontarão para o mesmo endereço das propriedades do objeto original, o que, se usado não intencionalmente, pode gerar diversos bugs no programa.
+
 #### 4.7.2. Deep Copy
+
+Uma deep copy cria uma nova instância do objeto original e também cria novas instâncias de todos os objetos referenciados. Isso significa que todas as propriedades e membros do objeto original são copiados, não apenas as referências. Como resultado, as alterações feitas em um objeto não afetam o outro.
+
+```javascript
+let livro2 = {
+  titulo: "One Piece",
+  genero: ["Aventura", "Fantasia", "Ficção"],
+  autor: "Eiichiro Oda",
+};
+console.log(livro2);
+
+const deepclone = structuredClone(livro2);
+console.log(deepclone);
+```
+
+A única questão que deve ser analisada na deep copy, é sua demora na execução comparada com a shallow copy, dependendo do tamanho da estrutura a ser copiada.
 
 ### 4.8. Funções
 
@@ -634,13 +969,59 @@ Outro ponto importante para utilização de funções arrow é que funções pod
 
 #### 4.8.2. Funções do array
 
+No JavaScript, os arrays possuem diversas funções e métodos para facilitar o manuseio dessa estrutura, que geralmente substituem a necessidade da utilização de uma estrutura for para percorrer pelos itens. Destacamos algumas das funções mais importantes, sendo elas: ‘foreach’, ‘map’, ‘filter’, ‘reduce’.
+
 ##### 4.8.2.1. Foreach
+
+O método ‘forEach’ executa uma dada função para cada elemento de um array. Essa dada função, assim como os próximos exemplos, possui 3 parâmetros que podem ou não ser utilizados de acordo com a necessidade: o primeiro deles é o elemento atual que está sendo percorrido, o segundo é o índice desse elemento no vetor original e o terceiro é o próprio vetor original.
+
+```javascript
+let vetor = [1, 2, 3];
+vetor.forEach((elemento) => console.log(elemento));
+let vetor = [1, 2, 3, 4, 5];
+vetor.forEach((item, indice, vetor) => {
+  console.log(item);
+  console.log(indice);
+  console.log(vetor);
+});
+```
 
 ##### 4.8.2.2. Map
 
+O método ‘Map’ invoca uma função (callback) passada por argumento para cada elemento do array e retorna um novo array como resultado.
+
+```javascript
+let array = [1, 5, 6, 102];
+
+const arrayDobro = array.map((elemento) => elemento * 2);
+console.log(arrayDobro);
+// Output: [ 2, 10, 12, 204 ]
+```
+
 ##### 4.8.2.3. Filter
 
+O método ‘Filter' cria um novo array com todos os elementos que passaram no teste de verificação implementado pela função fornecida.
+
+```javascript
+let numeros = [1, 2, 3, 4, 5, 6, 7, 8];
+
+const pares = numeros.filter((x) => x % 2 == 0);
+console.log(pares);
+// Output: [ 2, 4, 6, 8 ]
+```
+
 ##### 4.8.2.4. Reduce
+
+O método ‘Reduce’ executa uma função reducer (fornecida por você) para cada elemento do array, resultando em um único valor.
+
+```javascript
+let LeagueofLegends = ["Nome1", "Nome2", "Nome3", "Nome4"];
+
+const LoL = LeagueofLegends.reduce(
+  (elemento, elemento1) => elemento + elemento1
+);
+console.log(LoL);
+```
 
 ### 4.9. Promises, Async e Await
 
