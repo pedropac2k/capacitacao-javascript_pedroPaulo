@@ -319,9 +319,9 @@ Essa expressão significa o primeiro contato do desenvolvedor com uma linguagem 
 
 O console.log() é capaz de imprimir uma frase (string), um número (number) ou qualquer outro tipo de variável no console, não exibe nada na tela. O que a torna excelente para debugar o código.
 
-Para que o código em JS funcione é necessário a instalação do node.js, um sistema de tempo de execução que permite o desenvolvedor a criar servidores, aplicações web, algoritmos que leem inputs e interagem com o sistema operacional, e scripts.
+Para que o código em JS funcione é necessário a instalação do node.js, um sistema de tempo de execução que permite o desenvolvedor criar servidores, aplicações web, algoritmos que leem inputs e interagem com o sistema operacional, e scripts.
 
-Link de instalação: https://nodejs.org/en/download
+Link de instalação do node [clique aqui](https://nodejs.org/en/download).
 
 ## 4. Lógica de Programação em JS
 
@@ -545,7 +545,7 @@ const produto = {
 
 Assim, é possível notar que você pode usar a criatividade com gosto e fazer um objeto que atenda todas as necessidades, como ter dentro dele um array ou até mesmo outro objeto.
 
-Para acessar um atributo do objeto, ou seja, uma de suas características, basta colocar nome do objeto, ponto e nome do atributo como: `produto.preco`. Outra opção é usar uma notação semelhante a do array: `produto["preco"]`. Então, essas duas sintaxe, assim como no array, podem ser usadas para inserir ou modificar valores.
+Para acessar um atributo do objeto, ou seja, uma de suas características, basta colocar nome do objeto, ponto e nome do atributo como: `produto.preco`. Outra opção é usar uma notação semelhante a do array: `produto["preco"]`. Então, essas duas sintaxes, assim como no array, podem ser usadas para inserir ou modificar valores.
 
 Por fim, um ponto importante a se destacar sobre objetos é que eles não são a mesma coisa que um JSON. Pois, o JSON foi baseado no objeto do JS, mas ele é um formato textual que é usado para trocar dados entre sistemas distribuídos (sistemas na internet).
 
@@ -609,9 +609,9 @@ console.log(nome + " " + nome2); //Output: Nome Sobrenome
 
 Os operadores relacionais comparam valores e retornam um resultado booleano (true ou false). Esses operadores são:
 
-- > (maior)
+- \> (maior)
 - < (menor)
-- > = (maior igual)
+- \>= (maior igual)
 - <= (menor igual)
 - == (igual)
 - != (diferente)
@@ -714,7 +714,7 @@ l %= m; // Equivalente: l = l % m // Output: 0
 
 É comumente utilizado como um atalho para o ‘if’, avaliando uma expressão como verdadeira ou falsa.
 
-Sintaxe: condição? resultado1 : resultado2
+> Sintaxe: condição? resultado1 : resultado2
 
 Exemplo:
 
@@ -963,7 +963,7 @@ const dobroB = (a) => {
 const dobroC = (a) => 2 * a; //return está implícito
 ```
 
-Como pode-se perceber esse tipo de função tem menos elementos que a função tradicional, o que deixa mais agradável de programar e, também, como o costume mais fácil de entender.
+Como pode-se perceber esse tipo de função tem menos elementos que a função tradicional, o que deixa mais agradável de programar e, também, com o costume mais fácil de entender.
 
 Outro ponto importante para utilização de funções arrow é que funções podem receber funções como um parâmetro e devido ao formato reduzido fornecido pelas arrows elas se encaixam muito bem nesse papel, isso será demonstrado na próxima seção nas Funções do array.
 
@@ -978,6 +978,7 @@ O método ‘forEach’ executa uma dada função para cada elemento de um array
 ```javascript
 let vetor = [1, 2, 3];
 vetor.forEach((elemento) => console.log(elemento));
+
 let vetor = [1, 2, 3, 4, 5];
 vetor.forEach((item, indice, vetor) => {
   console.log(item);
@@ -1064,6 +1065,7 @@ const esperarPor = (tempo = 2000) => {
     }, tempo);
   });
 };
+
 //por trás do async e do await sempre tem que ter um promise
 const executar = async () => {
   await esperarPor(1500);
@@ -1090,7 +1092,7 @@ Por fim, não necessita o then já que o await faz o papel dele e o catch contin
 
 Agora que você viu vários aspectos do JS, viu como essa é uma linguagem poderosa e que pode atender aos requisitos de projetos. Contudo, como você deve ter reparado em nenhum momento quando as variáveis eram declaradas, tinha um tipo definido para elas, como por exemplo um “nome” poderia ser do tipo string já que sabemos que um nome é um conjunto de letras.
 
-Também cabe ressaltar que as operações do JS podem ou não depender do tipo, como foi explicitado na seção 4.7. Desta maneira, a não declaração de tipos pode ser uma grande fonte para bugs e um dos maiores indicadores das pesquisas científicas que indicam as dores cabeças dos pobres devs.
+Também cabe ressaltar que as operações do JS podem ou não depender do tipo, como foi explicitado na [seção 4.7](#47-clonando-objetos-shallow-copy-x-deep-copy). Desta maneira, a não declaração de tipos pode ser uma grande fonte para bugs e um dos maiores indicadores das pesquisas científicas que indicam as dores cabeças dos pobres devs.
 
 Sendo assim, o TypeScript (TS) veio ser a nossa dipirona, ele é responsável por tipar as variáveis, ou seja, garantir que um valor esperado em algum lugar do código realmente será do tipo que o desenvolvedor espera. Sendo assim, a sintaxe básica para tipar uma variável é nomeVariavel: tipo.
 
@@ -1192,7 +1194,7 @@ let n: null = null;
 
 #### 5.1.8. Any
 
-Permite que uma variável tenha qualquer tipo. Seria o “tipo padrão”/do JS, portanto não faz tanto sentido ser usado.
+Permite que uma variável tenha qualquer tipo. Seria o “tipo padrão” do JS, portanto não faz tanto sentido ser usado.
 
 ```typescript
 let variavelQualquer: any = "Isso pode ser qualquer coisa";
