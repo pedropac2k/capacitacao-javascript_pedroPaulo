@@ -21,6 +21,6 @@ l *= m; // Equivalente: l = l * m // Output: 50
 l /= m; // Equivalente: l = l / m// Output: 2
 l %= m; // Equivalente: l = l % m // Output: 0
 
-
 //TERNÁRIO
+const idade = 20;
 console.log(idade > 18 ? "Você eh um adulto!" : "Você é jovem!");
