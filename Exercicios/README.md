@@ -18,10 +18,11 @@ Só para organizar melhor vamos explicar um pouquinho as coisas: aqui em baixo t
 > 4\. Lógica de Programação em JS: **(Opcional)**
 >
 > > 4.1. Princípios de programação <br>
-> > 4.1.1. O que é um algoritmo<br>
-> > 4.1.2. Visão geral de todas estruturas<br>
-> > 4.1.3. O que é um bloco de código<br>
-> > 4.1.4. Comentário de um código<br>
+> >
+> > > 4.1.1. O que é um algoritmo<br>
+> > > 4.1.2. Visão geral de todas estruturas<br>
+> > > 4.1.3. O que é um bloco de código<br>
+> > > 4.1.4. Comentário de um código<br>
 
 </details>
 
