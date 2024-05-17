@@ -8,5 +8,5 @@ console.log(livro);
 const clone = { ...livro };
 console.log(clone);
 
-const clone2 = Object.assign();
+const clone2 = Object.assign(livro);
 console.log(clone2);
