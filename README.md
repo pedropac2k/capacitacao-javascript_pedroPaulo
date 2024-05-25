@@ -54,7 +54,7 @@
             <li>
                 <a href="#43-tipos-de-dados-primitivos-string-boolean-number">Tipos de dados primitivos (string, boolean, number)</a>
             </li>
-            <li>
+            <ol>
                 <li>
                 <a href="#431-string">Let</a>
                 </li>
@@ -70,7 +70,7 @@
                 <li>
                 <a href="#435-undefined">Const</a>
                 </li>
-            </li>
+            </ol>
             <li>
                 <a href="#44-estrutura-de-dados-array-e-objetos">Estrutura de dados (array e objetos)</a>
             </li>
