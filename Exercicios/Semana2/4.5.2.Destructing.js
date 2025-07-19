@@ -20,3 +20,20 @@ a) Utilize a sintaxe de Destructuring para atribuir os valores 'John', 30 e 'New
 b) Utilize a sintaxe de Destructuring para atribuir o valor 'John' e o valor 30 à variável PersonResume.
 
 */
+
+const numbers = [1, 2, 3, 4, 5];
+const [a, b, c, ...d] = numbers;
+
+const person = {
+    name: 'John',
+    age: 30,
+    city: 'New York'
+};
+
+console.log(a, b, c);
+console.log(d);
+
+const{name, age, city} = person;
+console.log('Nome: ' + name + ', Idade: ' + age + ', Cidade: ' + city);
+const personResume = {name, age};
+console.log(personResume);
